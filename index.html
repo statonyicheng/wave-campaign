@@ -539,12 +539,12 @@
   <form data-feedback class="space-y-5 px-6 pb-8 pt-2" novalidate>
     <div class="grid gap-5">
       <label class="block">
-        <span class="text-sm font-bold text-navy">稱呼 <span class="font-normal text-slate-400">（選填）</span></span>
-        <input name="稱呼" type="text" maxlength="40" autocomplete="name" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="可匿名" />
+        <span class="text-sm font-bold text-navy">稱呼 <span class="text-sun">*</span></span>
+        <input name="稱呼" type="text" required maxlength="40" autocomplete="name" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="怎麼稱呼你" />
       </label>
       <label class="block">
-        <span class="text-sm font-bold text-navy">班級 <span class="font-normal text-slate-400">（選填）</span></span>
-        <input name="班級" type="text" maxlength="40" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="例如 115BA" />
+        <span class="text-sm font-bold text-navy">班級 <span class="text-sun">*</span></span>
+        <input name="班級" type="text" required maxlength="40" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="例如 115BA" />
       </label>
     </div>
     <label class="block">
@@ -643,6 +643,9 @@
     };
     fbForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      for (const [name, label] of [['稱呼', '稱呼'], ['班級', '班級']]) {
+        if (!fbForm.elements[name].value.trim()) { fbShow(false, '請填寫' + label + '。'); fbForm.elements[name].focus(); return; }
+      }
       const body = fbForm.elements['意見內容'].value.trim();
       if (body.length < 2) { fbShow(false, '請先寫下你的意見內容。'); fbForm.elements['意見內容'].focus(); return; }
       if (!FEEDBACK_ENDPOINT) { fbShow(false, '意見箱即將開放，請稍後再試。'); return; }
@@ -674,7 +677,7 @@
       fbPanel.classList.remove('translate-x-full'); fbPanel.setAttribute('aria-hidden', 'false');
       fbBackdrop.classList.remove('hidden'); fbOpenBtn.classList.add('hidden'); fbOpenBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-      setTimeout(() => fbPanel.querySelector('textarea').focus({ preventScroll: true }), 320);
+      setTimeout(() => fbForm.elements['稱呼'].focus({ preventScroll: true }), 320);
     };
     const closeFb = () => {
       fbPanel.classList.add('translate-x-full'); fbPanel.setAttribute('aria-hidden', 'true');
