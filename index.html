@@ -48,6 +48,8 @@
     p, dd, li { text-wrap: pretty; }
 
     [data-lang-switch] button[aria-pressed="true"] { background: #F97316; color: #fff; }
+    html[lang="en"] .whitespace-nowrap { white-space: normal; }
+    html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3, html[lang="en"] summary, html[lang="en"] .kw { word-break: normal; overflow-wrap: break-word; }
 
     /* 防複製 */
     body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
