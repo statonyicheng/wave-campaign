@@ -47,6 +47,8 @@
     h1, h2, h3, summary, .kw { word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
     p, dd, li { text-wrap: pretty; }
 
+    [data-lang-switch] button[aria-pressed="true"] { background: #F97316; color: #fff; }
+
     /* 防複製 */
     body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
     img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; pointer-events: none; }
@@ -123,7 +125,7 @@
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
       <a href="#top" class="flex items-center gap-2">
         <span class="grid h-9 w-9 place-items-center rounded-xl bg-sun font-display text-lg font-black text-white">W</span>
-        <span class="font-display text-xl font-black tracking-wide text-white" data-logo>WAVE<span class="text-sun">.</span></span>
+        <span class="hidden font-display text-xl font-black tracking-wide text-white min-[360px]:inline" data-logo>WAVE<span class="text-sun">.</span></span>
       </a>
       <ul class="hidden items-center gap-6 text-sm font-medium text-white/85 lg:flex" data-navlinks>
         <li><a href="#why" class="hover:text-sun">為什麼參選</a></li>
@@ -133,7 +135,13 @@
         <li><a href="#vote" class="hover:text-sun">投票資訊</a></li>
         <li><a href="#faq" class="hover:text-sun">Q&amp;A</a></li>
       </ul>
-      <a href="#join" class="btn-glow rounded-full bg-sun px-5 py-2.5 text-sm font-bold text-white">支持 WAVE</a>
+      <div class="flex items-center gap-2">
+        <div role="group" aria-label="語言 Language" data-lang-switch class="flex rounded-full p-0.5 text-xs font-bold text-white ring-1 ring-white/30">
+          <button type="button" data-lang="zh" class="rounded-full px-2.5 py-1.5 transition" aria-pressed="true">中</button>
+          <button type="button" data-lang="en" class="rounded-full px-2.5 py-1.5 transition" aria-pressed="false">EN</button>
+        </div>
+        <a href="#join" class="btn-glow whitespace-nowrap rounded-full bg-sun px-4 py-2.5 text-sm font-bold text-white sm:px-5">支持 WAVE</a>
+      </div>
     </nav>
   </header>
 
@@ -148,11 +156,11 @@
           <span class="h-2 w-2 animate-pulse rounded-full bg-sun"></span>
           <span class="kw"><span class="whitespace-nowrap">臺大進修推廣學院・</span><wbr /><span class="whitespace-nowrap">第十屆學生會會長候選人</span></span>
         </p>
-        <h1 class="text-4xl font-black leading-tight sm:text-5xl xl:text-6xl">
+        <h1 class="text-4xl font-black leading-tight sm:text-5xl xl:text-6xl" data-i18n="h1">
           <span class="whitespace-nowrap">⚡ 行動力</span><wbr /><span class="whitespace-nowrap">是我的<span class="bg-gradient-to-r from-wave to-sun bg-clip-text text-transparent">超能力</span></span>
         </h1>
         <p class="mt-5 text-2xl font-bold text-white sm:text-3xl">帶大家在臺大百年，一起畢業 🎓</p>
-        <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/80" data-i18n="intro">
           我是 115BA <strong class="whitespace-nowrap text-white">莊偉甫</strong>，<span class="whitespace-nowrap">大家都叫我 <strong class="font-display text-white">WAVE</strong>。</span>
           活動要辦好、大樓改建期間的權益要守住、百年畢業要有紀念——三件事，我都會動手做到。
         </p>
@@ -572,6 +580,41 @@
     box.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeBox(); hideQrBox(); } });
 
+    // 中英切換
+    const I18N_T = {"為什麼參選": "Why I'm Running", "認識 WAVE": "Meet WAVE", "參選政見": "Platform", "一起走的路": "Roadmap", "投票資訊": "Voting Info", "支持 WAVE": "Support WAVE", "臺大進修推廣學院・": "NTU SPECS · ", "第十屆學生會會長候選人": "Candidate for 10th Student Association President", "帶大家在臺大百年，一起畢業 🎓": "Let's graduate together in NTU's centennial year 🎓", "11/8（日）投 WAVE 一票": "Vote WAVE · Sun, Nov 8", "看參選政見 →": "See my platform →", "大參選政見": "key pledges", "週日投票日": "Election day (Sun)", "投票教室": "Polling room", "接下來這一屆，有三件事不能等": "Three things that can't wait this term", "白天工作、晚上上課，我們的時間有限，所以更需要有人把事情推動起來。": "Working by day and studying by night, our time is limited — which is exactly why we need someone who gets things moving.", "忙碌之中，交流不能斷": "Stay connected, however busy", "工作與課業兩頭燒，跨班、跨屆認識彼此的機會本來就不多，好的傳統需要有人用心延續。": "Juggling work and classes leaves few chances to meet people across classes and cohorts. Good traditions need someone to keep them alive.", "大樓重建，空間去哪？": "The building is being rebuilt — where do we go?", "進修推廣部大樓預計 116 年動工重建，課前課後休息、討論、讀書的地方，可能跟著消失。": "Reconstruction of the SPECS building is expected to begin in 2027. The places we rest, meet and study before and after class could disappear with it.", "百年一次的畢業": "A once-in-a-century graduation", "115 屆正好在臺大百年畢業，這樣的時刻，值得留下一段大家一起的回憶。": "Class 115 graduates in NTU's centennial year — a moment worth remembering together.", "WAVE 的答案：不只說，直接動手做": "WAVE's answer: less talk, more action", "活動照辦、空間去爭取、畢旅來籌備。每一項政見都對應一個具體行動，讓大家感受得到學生會的存在。": "Keep the events going, fight for our space, plan the graduation trip. Every pledge comes with a concrete action, so you can feel the Student Association at work.", "認識莊偉甫 WAVE": "Meet WAVE (莊偉甫)", "課堂上認真，球場上熱血。白天工作、晚上上課，走到哪裡都帶著滿滿的行動力。": "Focused in class, fired up on the court. Working by day and studying by night, he brings energy wherever he goes.", "115 學年度臺大新鮮人": "NTU freshman, class of 115", "115BA，和你一起在": "115BA — graduating with you in ", "臺大百年畢業": "NTU's centennial year", "熱愛網球": "Tennis lover", "用運動保持體力與行動力": "Staying energized through sport", "說到做到的行動派": "A doer who keeps his word", "三項政見，一件一件動手做": "Three pledges, delivered one by one", "🎓 開學典禮": "🎓 Opening ceremony", "正式成為": "Officially an ", "臺大新鮮人": "NTU freshman", "🎾 球場上": "🎾 On the court", "熱愛網球的 WAVE": "WAVE, tennis lover", "三件事，一件一件做到。": "Three things, done one at a time.", "延續傳統，辦好每場活動": "Keep traditions alive with great events", "持續舉辦迎新、送舊、聖誕派對與家庭日，促進跨班、跨屆交流。": "Keep hosting the welcome party, farewell party, Christmas party and Family Day to connect classes and cohorts.", "迎新": "Welcome party", "送舊": "Farewell", "聖誕派對": "Christmas party", "家庭日": "Family Day", "大樓改建期間，守護同學權益": "Protect students' interests during reconstruction", "進修推廣部大樓預計 116 年動工重建，將與學院保持溝通，爭取設置臨時學生交誼廳暨讀書空間，讓咖啡香不中斷 ☕。": "With reconstruction of the SPECS building expected to start in 2027, I'll stay in close contact with the school to secure a temporary student lounge and study space — so the coffee never stops ☕.", "臨時交誼廳": "Temporary lounge", "讀書空間": "Study space", "與學院溝通": "Working with the school", "籌備臺大百年畢業旅行": "Plan an NTU centennial graduation trip", "為 115 屆同學打造具紀念意義的自費畢業旅行，在臺大百年一起畢業 🎓。": "A memorable, self-funded graduation trip for Class 115 — graduating together in NTU's centennial year 🎓.", "115 屆": "Class 115", "臺大百年": "NTU centennial", "畢業旅行": "Graduation trip", "從現在到畢業，我們一起走": "From now to graduation, together", "116 年 1 月 – 12 月任期內": "Throughout the 2027 term", "迎新、聖誕派對、家庭日、送舊": "Welcome, Christmas, Family Day & Farewell", "傳統活動一場都不少，讓不同班級、不同屆的同學有機會真正認識彼此。": "Every traditional event, no exceptions — real chances to get to know people across classes and cohorts.", "116 年動工前": "Before construction begins in 2027", "與學院溝通，": "Work with the school ", "爭取臨時交誼廳": "to secure a temporary lounge ", "暨讀書空間": "and study space", "大樓改建是長期工程，同學的休息與讀書需求要在動工前就被看見。": "Reconstruction is a long project — our need for rest and study space must be heard before work begins.", "115 屆百年畢業旅行，一起畢業": "Class 115 centennial trip — graduating together", "為這個難得的時刻，留下一趟屬於 115 屆的紀念旅程。": "A trip for Class 115 to mark this rare moment.", "國立臺灣大學進修推廣學院": "National Taiwan University SPECS", "第十屆學生會會長選舉": "10th Student Association Presidential Election", "投票日": "Election day", "（日）": " (Sun)", "中午 12:00 – 13:00": "12:00 – 13:00 (noon)", "📍 臺北校區・": "📍 Taipei Campus · ", "進修學院教室": "SPECS Building,", "206 教室": "Room 206", "天": "days", "時": "hrs", "分": "min", "秒": "sec", "投票進行中／已結束，感謝每一位投票的同學！": "Voting is under way or has ended — thank you to everyone who voted!", "記得帶學生證": "Bring your student ID", "當日憑學生證領票，不得代領代投。": "Ballots are issued on presentation of your student ID. No proxy voting.", "誰可以投票": "Who can vote", "進修推廣學院 PM 學程全體在學學生。": "All currently enrolled students in SPECS PM programs.", "無記名投票・": "Secret ballot · ", "應選 1 名": "1 seat", "會長任期自 116 年 1 月 1 日起至 116 年 12 月 31 日止。": "Term of office: Jan 1 – Dec 31, 2027.", "🔍 點擊放大檢視": "🔍 Tap to enlarge (Chinese)", "📄 選委會正式公告": "📄 Official election notice", "第十屆學生會會長選舉公告": "10th Student Association Presidential Election Notice ", "（第一次）": "(No. 1)", "第十屆學生會選舉委員會・": "10th Student Association Election Committee · ", "115 年 10 月 5 日發布": "issued Oct 5, 2026", "投票時間": "Time", "115/11/8（日）12:00–13:00": "Sun, Nov 8, 2026, 12:00–13:00", "投票地點": "Location", "臺北校區 進修學院教室 206": "Taipei Campus, SPECS Building, Room 206", "選舉人": "Voters", "PM 學程全體在學學生": "All enrolled PM program students", "任期": "Term", "116/1/1 – 116/12/31": "Jan 1 – Dec 31, 2027", "資料來源：第十屆學生會選舉委員會〈第十屆學生會會長選舉公告（第一次）〉，": "Source: 10th Student Association Election Committee, “10th Student Association Presidential Election Notice (No. 1)”, ", "115 年 10 月 5 日發布。": "issued Oct 5, 2026. ", "如有異動以選委會公告為準。": "In case of changes, the committee's announcements prevail.", "官方網站": "Official websites", "國立臺灣大學": "National Taiwan University", "臺大進修推廣學院": "NTU SPECS", "臺大 PM 學生會": "NTU PM Student Association", "你可能想問": "Frequently asked questions", "什麼時候、在哪裡投票？": "When and where do I vote?", "115 年 11 月 8 日（星期日）中午 12:00 至 13:00，在臺北校區進修學院教室 206 教室投票。採無記名投票，請記得帶學生證領票。": "Sunday, November 8, 2026, from 12:00 to 13:00, in Room 206 of the SPECS Building on the Taipei Campus. It's a secret ballot — remember to bring your student ID to collect your ballot.", "誰可以投票？可以幫同學代投嗎？": "Who can vote? Can I vote for a classmate?", "進修推廣學院 PM 學程全體在學學生都有投票權。投票當天須本人憑學生證領票，": "All currently enrolled students in SPECS PM programs can vote. You must collect your ballot in person with your student ID — ", "不得代領代投": "no proxy voting", "，違者會被取消選舉人資格、該票不列入投票總數。": ". Violators lose their voting eligibility, and the ballot will not be counted.", "大樓改建期間，": "During reconstruction, ", "上課和休息空間怎麼辦？": "where will we study and rest?", "這正是政見第二項的重點：WAVE 會與學院保持溝通，爭取設置臨時學生交誼廳暨讀書空間，讓同學課前課後依然有地方休息、討論、喝杯咖啡。": "That's the heart of pledge #2: WAVE will work with the school to secure a temporary student lounge and study space, so you still have somewhere to rest, talk and grab a coffee before and after class.", "百年畢業旅行": "Is the centennial graduation trip ", "要自己付費嗎？": "self-funded?", "是的，畢業旅行為自費參加。學生會負責規劃與籌備，行程與細節會再和 115 屆同學一起討論決定。": "Yes, the trip is self-funded. The Student Association will handle the planning, and the itinerary and details will be decided together with Class 115.", "活動只限": "Are events limited ", "自己班上參加嗎？": "to my own class?", "不是。迎新、送舊、聖誕派對與家庭日都歡迎跨班、跨屆一起參加，家庭日也歡迎家人同行。": "No. The welcome party, farewell party, Christmas party and Family Day are open to all classes and cohorts — and families are welcome at Family Day.", "臺大百年，": "NTU's centennial — ", "我們一起畢業 🎓": "let's graduate together 🎓", "11 月 8 日（日）中午・206 教室": "Sun, Nov 8 · Noon · Room 206", "請帶學生證，把你的一票交給": "Bring your student ID and cast your vote for", "莊偉甫 WAVE": "WAVE (莊偉甫)", "也請把網址分享給身邊的同學": "and please share this site with classmates", "分享給同學": "Share with classmates", "再看一次政見": "Review the platform", "📱 掃描 QR Code 分享": "📱 Scan to share", "開手機相機對準掃描，或把 QR 分享圖存到相簿，傳到班群、IG 限動。": "Point your phone camera at the code, or save the QR image to your photos and share it in class chats or IG Stories.", "⬇ 下載 QR 分享圖": "⬇ Save QR image", "莊偉甫・115BA・": "WAVE (莊偉甫) · 115BA · ", "⚡ 行動力是我的超能力，": "⚡ Action is my superpower — ", "帶大家在臺大百年一起畢業 🎓": "let's graduate together in NTU's centennial 🎓", "相關連結": "Related links", "© 2026 莊偉甫 WAVE 競選團隊・": "© 2026 WAVE (莊偉甫) Campaign Team · ", "👆 長按圖片 →「儲存到照片／下載圖片」": "👆 Long-press the image → “Save to Photos / Download”"};
+    const I18N_E = {"h1": "<span class=\"whitespace-nowrap\">⚡ Action</span> <span class=\"whitespace-nowrap\">is my <span class=\"bg-gradient-to-r from-wave to-sun bg-clip-text text-transparent\">superpower</span></span>", "intro": "I'm <strong class=\"font-display text-white\">WAVE</strong> (<strong class=\"text-white\">莊偉甫</strong>), class 115BA. Great events, protecting our interests during the building reconstruction, and a graduation worth remembering in the centennial year — I'll make all three happen."};
+    const I18N_META = {
+      zh: { title: document.title, share: '行動力是我的超能力，帶大家在臺大百年一起畢業 🎓', copied: '已複製網址，貼給同學吧！' },
+      en: { title: 'WAVE for 10th Student Association President | NTU SPECS', share: "Action is my superpower — let's graduate together in NTU's centennial 🎓", copied: 'Link copied — share it with classmates!' },
+    };
+    let lang = 'zh';
+    const textNodes = [];
+    (() => {
+      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: (n) => n.parentElement.closest('script,style,[data-i18n]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
+      });
+      let n;
+      while ((n = w.nextNode())) {
+        const key = n.nodeValue.trim();
+        if (key && I18N_T[key] !== undefined) {
+          const lead = n.nodeValue.match(/^\s*/)[0], trail = n.nodeValue.match(/\s*$/)[0];
+          textNodes.push({ n, zh: n.nodeValue, en: lead + I18N_T[key] + trail });
+        }
+      }
+    })();
+    const elNodes = [...document.querySelectorAll('[data-i18n]')].map((el) => ({ el, zh: el.innerHTML, en: I18N_E[el.dataset.i18n] }));
+    const setLang = (l) => {
+      lang = l;
+      textNodes.forEach((t) => { t.n.nodeValue = t[l]; });
+      elNodes.forEach((e) => { e.el.innerHTML = e[l]; });
+      document.documentElement.lang = l === 'en' ? 'en' : 'zh-Hant';
+      document.title = I18N_META[l].title;
+      document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+      try { localStorage.setItem('wave-lang', l); } catch (_) {}
+    };
+    document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    try { if (localStorage.getItem('wave-lang') === 'en') setLang('en'); } catch (_) {}
+
     // 捲動淡入
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
@@ -591,6 +634,9 @@
       logo.classList.toggle('text-navy', scrolled);
       links.classList.toggle('text-white/85', !scrolled);
       links.classList.toggle('text-slate-600', scrolled);
+      const sw = document.querySelector('[data-lang-switch]');
+      sw.classList.toggle('text-white', !scrolled); sw.classList.toggle('ring-white/30', !scrolled);
+      sw.classList.toggle('text-navy', scrolled); sw.classList.toggle('ring-navy/25', scrolled);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -614,11 +660,11 @@
     const shareBtn = document.querySelector('[data-share]');
     const shareMsg = document.querySelector('[data-share-msg]');
     shareBtn.addEventListener('click', async () => {
-      const data = { title: '第十屆學生會長競選｜莊偉甫 WAVE｜臺大進修推廣學院', text: '行動力是我的超能力，帶大家在臺大百年一起畢業 🎓', url: location.href };
+      const data = { title: I18N_META[lang].title, text: I18N_META[lang].share, url: location.href };
       try {
         if (navigator.share) { await navigator.share(data); return; }
         await navigator.clipboard.writeText(location.href);
-        shareMsg.textContent = '已複製網址，貼給同學吧！';
+        shareMsg.textContent = I18N_META[lang].copied;
       } catch (_) {
         shareMsg.textContent = location.href;
       }
