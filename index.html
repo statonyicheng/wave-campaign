@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>莊偉甫 WAVE｜第十屆學生會會長候選人</title>
+  <meta name="description" content="莊偉甫（WAVE）參選第十屆學生會會長：讓每一個聲音，都掀起改變的浪潮。" />
+  <meta property="og:title" content="莊偉甫 WAVE｜第十屆學生會會長候選人" />
+  <meta property="og:description" content="讓每一個聲音，都掀起改變的浪潮。" />
+  <meta property="og:image" content="wave.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1E3A8A', deep: '#0F1F4D', ink: '#0B1533' },
+            wave: { DEFAULT: '#38BDF8', soft: '#E0F2FE' },
+            sun: { DEFAULT: '#F97316', soft: '#FFF1E6' },
+          },
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', '"Noto Sans TC"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+
+    /* 捲動淡入 */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; } .reveal-d2 { transition-delay: .2s; } .reveal-d3 { transition-delay: .3s; }
+
+    /* 按鈕微光 + 縮放 */
+    .btn-glow { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+    .btn-glow::after {
+      content: ""; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
+      transform: skewX(-20deg); transition: left .6s ease;
+    }
+    .btn-glow:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 12px 30px -8px rgba(249,115,22,.6); }
+    .btn-glow:hover::after { left: 140%; }
+
+    /* 卡片 hover */
+    .lift { transition: transform .3s ease, box-shadow .3s ease; }
+    .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(30,58,138,.28); }
+
+    /* FAQ 展開 */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    details[open] .faq-body { grid-template-rows: 1fr; }
+    details .faq-body > div { overflow: hidden; }
+    details .chev { transition: transform .3s ease; }
+    details[open] .chev { transform: rotate(45deg); }
+
+    /* 海浪動畫 */
+    .wave-anim { animation: drift 12s linear infinite; }
+    @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .wave-anim { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+  <!-- ========== Header ========== -->
+  <header id="top" class="fixed inset-x-0 top-0 z-50 transition-all duration-300" data-header>
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <a href="#top" class="flex items-center gap-2">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-sun font-display text-lg font-black text-white">W</span>
+        <span class="font-display text-xl font-black tracking-wide text-white" data-logo>WAVE<span class="text-sun">.</span></span>
+      </a>
+      <ul class="hidden items-center gap-8 text-sm font-medium text-white/85 md:flex" data-navlinks>
+        <li><a href="#why" class="hover:text-sun">為什麼參選</a></li>
+        <li><a href="#policy" class="hover:text-sun">政見</a></li>
+        <li><a href="#voices" class="hover:text-sun">同學怎麼說</a></li>
+        <li><a href="#faq" class="hover:text-sun">Q&amp;A</a></li>
+      </ul>
+      <a href="#join" class="btn-glow rounded-full bg-sun px-5 py-2.5 text-sm font-bold text-white">支持 WAVE</a>
+    </nav>
+  </header>
+
+  <!-- ========== Hero ========== -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-navy-ink via-navy-deep to-navy pt-28 pb-32 text-white sm:pt-32">
+    <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-wave/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-sun/20 blur-3xl"></div>
+
+    <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2">
+      <div class="reveal">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm">
+          <span class="h-2 w-2 animate-pulse rounded-full bg-sun"></span>
+          第十屆學生會會長候選人
+        </p>
+        <h1 class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+          讓每一個聲音<br />
+          都掀起<span class="bg-gradient-to-r from-wave to-sun bg-clip-text text-transparent">改變的浪潮</span>
+        </h1>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
+          我是 115BA <strong class="text-white">莊偉甫</strong>，大家都叫我 <strong class="font-display text-white">WAVE</strong>。學生會不該只是辦活動的單位，而是替你把話說進校方會議室的那群人。
+          第十屆，我們把「聽見」變成「做到」。
+        </p>
+        <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+          <a href="#join" class="btn-glow rounded-full bg-sun px-8 py-4 text-center text-lg font-bold text-white">投票日，投 WAVE 一票</a>
+          <a href="#policy" class="rounded-full border border-white/30 px-8 py-4 text-center text-lg font-medium text-white transition hover:bg-white/10">看完整政見 →</a>
+        </div>
+        <dl class="mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-white/15 pt-6 text-center">
+          <div><dt class="font-display text-3xl font-black text-sun">4</dt><dd class="mt-1 text-xs text-white/70">大政見主軸</dd></div>
+          <div><dt class="font-display text-3xl font-black text-wave">30</dt><dd class="mt-1 text-xs text-white/70">天回覆提案</dd></div>
+          <div><dt class="font-display text-3xl font-black text-white">100%</dt><dd class="mt-1 text-xs text-white/70">預算公開</dd></div>
+        </dl>
+      </div>
+
+      <div class="reveal reveal-d2 relative mx-auto w-full max-w-md">
+        <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] bg-gradient-to-br from-sun to-wave"></div>
+        <img src="wave.jpg" alt="第十屆學生會會長候選人 莊偉甫 WAVE" class="relative w-full rounded-[2rem] object-cover shadow-2xl" width="900" height="900" />
+        <div class="absolute -bottom-6 -left-4 rounded-2xl bg-white px-5 py-4 text-navy shadow-xl sm:-left-8">
+          <p class="text-xs font-medium text-slate-500">第十屆學生會會長候選人</p>
+          <p class="text-2xl font-black">莊偉甫 <span class="font-display">WAVE</span></p><p class="text-xs text-slate-500">115BA</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 海浪 -->
+    <div class="absolute inset-x-0 bottom-0 overflow-hidden leading-none">
+      <svg class="wave-anim block h-20 w-[200%]" viewBox="0 0 2880 120" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#f8fafc" d="M0 60 C240 120 480 0 720 60 C960 120 1200 0 1440 60 C1680 120 1920 0 2160 60 C2400 120 2640 0 2880 60 V120 H0 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== Pain Points & Solution ========== -->
+  <section id="why" class="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="font-display text-sm font-bold tracking-[.3em] text-sun">WHY WAVE</p>
+      <h2 class="mt-3 text-3xl font-black text-navy sm:text-4xl">這些事，你是不是也有感？</h2>
+      <p class="mt-4 text-slate-600">每一個抱怨背後，都是一個還沒被解決的問題。</p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <article class="reveal lift rounded-3xl border border-slate-200 bg-white p-8">
+        <span class="text-4xl">🙉</span>
+        <h3 class="mt-4 text-xl font-bold text-navy">意見說了，然後呢？</h3>
+        <p class="mt-3 leading-relaxed text-slate-600">填過問卷、在群組反映過，卻從來不知道有沒有人看、有沒有下文。</p>
+      </article>
+      <article class="reveal reveal-d1 lift rounded-3xl border border-slate-200 bg-white p-8">
+        <span class="text-4xl">🧩</span>
+        <h3 class="mt-4 text-xl font-bold text-navy">資訊散落各處</h3>
+        <p class="mt-3 leading-relaxed text-slate-600">活動、社團、獎學金消息分散在不同群組和公告欄，等你知道時報名早就截止了。</p>
+      </article>
+      <article class="reveal reveal-d2 lift rounded-3xl border border-slate-200 bg-white p-8">
+        <span class="text-4xl">💸</span>
+        <h3 class="mt-4 text-xl font-bold text-navy">會費花去哪了？</h3>
+        <p class="mt-3 leading-relaxed text-slate-600">大家都繳了學生會費，卻很少有人看過一份清楚易懂的收支報告。</p>
+      </article>
+    </div>
+
+    <div class="reveal mt-12 rounded-3xl bg-gradient-to-r from-navy to-navy-deep p-8 text-white sm:p-12">
+      <div class="grid items-center gap-8 md:grid-cols-[auto,1fr]">
+        <span class="font-display text-6xl font-black text-sun sm:text-7xl">→</span>
+        <div>
+          <h3 class="text-2xl font-black sm:text-3xl">WAVE 的答案：把學生會變成「有回音」的地方</h3>
+          <p class="mt-3 text-lg leading-relaxed text-white/80">
+            每個提案都有編號、有進度、有期限；每一筆經費都攤在陽光下；每一則重要資訊，一個地方就找得到。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Features / Policy ========== -->
+  <section id="policy" class="scroll-mt-20 bg-white py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="font-display text-sm font-bold tracking-[.3em] text-sun">4 POLICIES</p>
+        <h2 class="mt-3 text-3xl font-black text-navy sm:text-4xl">四大政見，一起翻轉校園</h2>
+        <p class="mt-4 text-slate-600">不畫大餅，每一項都寫清楚「怎麼做」。</p>
+      </div>
+
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="reveal lift rounded-3xl bg-slate-50 p-7">
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-navy text-white">
+            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6 3-3h11a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14z"/></svg>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-navy">WAVE 意見直通車</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">線上提案平台，每案編號追蹤，<b class="text-navy">30 天內必定公開回覆</b>，附議過門檻直送校務會議。</p>
+        </article>
+        <article class="reveal reveal-d1 lift rounded-3xl bg-slate-50 p-7">
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-sun text-white">
+            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6m4 6V7m4 10v-3M4 21h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1z"/></svg>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-navy">預算透明看板</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">每月公布學生會收支，用圖表讓人一眼看懂，<b class="text-navy">每一筆支出都有憑據</b>。</p>
+        </article>
+        <article class="reveal reveal-d2 lift rounded-3xl bg-slate-50 p-7">
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-wave text-white">
+            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M7 11h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-navy">校園資訊一站通</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">活動、社團、獎學金、權益公告整合成一個行事曆，<b class="text-navy">重要截止日自動提醒</b>。</p>
+        </article>
+        <article class="reveal reveal-d3 lift rounded-3xl bg-slate-50 p-7">
+          <div class="grid h-14 w-14 place-items-center rounded-2xl bg-navy-deep text-white">
+            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 0 0-5.36-1.86M17 20H7m10 0v-2c0-.66-.13-1.28-.36-1.86M7 20H2v-2a3 3 0 0 1 5.36-1.86M7 20v-2c0-.66.13-1.28.36-1.86m0 0a5 5 0 0 1 9.28 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-navy">社團與活動能量升級</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">簡化場地與經費申請流程，增設跨社團合作補助，<b class="text-navy">讓好點子不卡在行政</b>。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Testimonials ========== -->
+  <section id="voices" class="mx-auto max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="font-display text-sm font-bold tracking-[.3em] text-sun">VOICES</p>
+      <h2 class="mt-3 text-3xl font-black text-navy sm:text-4xl">一起做過事的人，怎麼說 WAVE</h2>
+    </div>
+
+    <!-- TODO: 以下為示意留言，請替換成真實支持者的話與署名（取得本人同意） -->
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <figure class="reveal lift relative rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+        <span class="absolute -top-5 left-8 font-display text-6xl font-black text-sun">“</span>
+        <blockquote class="mt-2 leading-relaxed text-slate-700">籌備活動時大家意見很多，WAVE 總能先把每個人的想法聽完，再整理出大家都能接受的做法。</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-navy font-bold text-white">林</span>
+          <div><p class="font-bold text-navy">林同學</p><p class="text-xs text-slate-500">活動籌備夥伴</p></div>
+        </figcaption>
+      </figure>
+      <figure class="reveal reveal-d1 lift relative rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+        <span class="absolute -top-5 left-8 font-display text-6xl font-black text-sun">“</span>
+        <blockquote class="mt-2 leading-relaxed text-slate-700">他答應的事一定會給交代，就算做不到也會說明原因。這種人當會長，我放心。</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-sun font-bold text-white">陳</span>
+          <div><p class="font-bold text-navy">陳同學</p><p class="text-xs text-slate-500">社團幹部</p></div>
+        </figcaption>
+      </figure>
+      <figure class="reveal reveal-d2 lift relative rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+        <span class="absolute -top-5 left-8 font-display text-6xl font-black text-sun">“</span>
+        <blockquote class="mt-2 leading-relaxed text-slate-700">以前覺得學生會離我很遠，聽完 WAVE 的政見，第一次覺得自己的意見真的可能被落實。</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-wave font-bold text-white">張</span>
+          <div><p class="font-bold text-navy">張同學</p><p class="text-xs text-slate-500">新生</p></div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="scroll-mt-20 bg-white py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="reveal text-center">
+        <p class="font-display text-sm font-bold tracking-[.3em] text-sun">Q &amp; A</p>
+        <h2 class="mt-3 text-3xl font-black text-navy sm:text-4xl">你可能想問</h2>
+      </div>
+
+      <div class="mt-12 space-y-4">
+        <details class="reveal group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 open:bg-white open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 text-lg font-bold text-navy">什麼時候、在哪裡投票？<span class="chev text-2xl text-sun">+</span></summary>
+          <div class="faq-body"><div><p class="pt-3 leading-relaxed text-slate-600">投票時間與地點以選委會正式公告為準，公告後會第一時間更新在這裡與 WAVE 的 IG。記得攜帶學生證！</p></div></div>
+        </details>
+        <details class="reveal group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 open:bg-white open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 text-lg font-bold text-navy">政見真的做得到嗎？怎麼監督？<span class="chev text-2xl text-sun">+</span></summary>
+          <div class="faq-body"><div><p class="pt-3 leading-relaxed text-slate-600">上任後每個月公開「政見進度表」，每一項標示完成、進行中或卡關原因。做得好不好，由全體同學一起檢驗。</p></div></div>
+        </details>
+        <details class="reveal group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 open:bg-white open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 text-lg font-bold text-navy">我有想法，現在就能提出嗎？<span class="chev text-2xl text-sun">+</span></summary>
+          <div class="faq-body"><div><p class="pt-3 leading-relaxed text-slate-600">可以！寫信或私訊 IG 給我們，競選期間收到的每一則建議都會整理進政見，上任後優先處理。</p></div></div>
+        </details>
+        <details class="reveal group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 open:bg-white open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 text-lg font-bold text-navy">我想加入競選團隊，需要什麼條件？<span class="chev text-2xl text-sun">+</span></summary>
+          <div class="faq-body"><div><p class="pt-3 leading-relaxed text-slate-600">不需要任何經驗，只要你也想讓學校變得更好。文宣設計、影音拍攝、掃街拜票都缺人，點下方按鈕跟我們聯絡。</p></div></div>
+        </details>
+        <details class="reveal group rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 open:bg-white open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 text-lg font-bold text-navy">為什麼叫 WAVE？<span class="chev text-2xl text-sun">+</span></summary>
+          <div class="faq-body"><div><p class="pt-3 leading-relaxed text-slate-600">一滴水推不動什麼，但千千萬萬滴水聚在一起，就是浪潮。每位同學的聲音，都是那一滴水。</p></div></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section id="join" class="scroll-mt-20 px-4 py-24 sm:px-6">
+    <div class="reveal relative mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-navy to-navy-ink px-6 py-16 text-center text-white sm:px-16">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-sun/30 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-wave/30 blur-3xl"></div>
+      <h2 class="relative text-3xl font-black sm:text-5xl">一個人是一滴水<br class="sm:hidden" />，一起就是浪潮。</h2>
+      <p class="relative mx-auto mt-5 max-w-xl text-lg text-white/80">投票日，請把你的一票交給 WAVE。<br />也歡迎現在就加入我們，一起把改變帶進校園。</p>
+      <div class="relative mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="mailto:wave.campaign@example.com?subject=%E6%88%91%E6%83%B3%E5%8A%A0%E5%85%A5%20WAVE%20%E7%AB%B6%E9%81%B8%E5%9C%98%E9%9A%8A" class="btn-glow rounded-full bg-sun px-10 py-4 text-lg font-bold text-white">加入競選團隊</a>
+        <button type="button" data-share class="rounded-full border border-white/30 px-10 py-4 text-lg font-medium transition hover:bg-white/10">分享給同學</button>
+      </div>
+      <p class="relative mt-4 h-5 text-sm text-wave" data-share-msg></p>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="bg-navy-ink py-12 text-white/70">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:px-6 md:flex-row">
+      <div class="text-center md:text-left">
+        <p class="font-display text-2xl font-black text-white">WAVE<span class="text-sun">.</span></p>
+        <p class="mt-1 text-sm">莊偉甫・115BA・第十屆學生會會長候選人</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition hover:scale-110 hover:bg-sun">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" class="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition hover:scale-110 hover:bg-sun">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <a href="mailto:wave.campaign@example.com" aria-label="Email" class="grid h-11 w-11 place-items-center rounded-full bg-white/10 transition hover:scale-110 hover:bg-sun">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="mt-10 text-center text-xs text-white/40">© 2026 莊偉甫 WAVE 競選團隊・第十屆學生會會長選舉</p>
+  </footer>
+
+  <script>
+    // 捲動淡入
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Header 捲動後變白底
+    const header = document.querySelector('[data-header]');
+    const logo = document.querySelector('[data-logo]');
+    const links = document.querySelector('[data-navlinks]');
+    const onScroll = () => {
+      const scrolled = window.scrollY > 40;
+      header.classList.toggle('bg-white/90', scrolled);
+      header.classList.toggle('backdrop-blur', scrolled);
+      header.classList.toggle('shadow-sm', scrolled);
+      logo.classList.toggle('text-white', !scrolled);
+      logo.classList.toggle('text-navy', scrolled);
+      links.classList.toggle('text-white/85', !scrolled);
+      links.classList.toggle('text-slate-600', scrolled);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // 分享
+    const shareBtn = document.querySelector('[data-share]');
+    const shareMsg = document.querySelector('[data-share-msg]');
+    shareBtn.addEventListener('click', async () => {
+      const data = { title: '莊偉甫 WAVE｜第十屆學生會會長候選人', text: '讓每一個聲音，都掀起改變的浪潮。', url: location.href };
+      try {
+        if (navigator.share) { await navigator.share(data); return; }
+        await navigator.clipboard.writeText(location.href);
+        shareMsg.textContent = '已複製網址，貼給同學吧！';
+      } catch (_) {
+        shareMsg.textContent = location.href;
+      }
+    });
+  </script>
+</body>
+</html>
