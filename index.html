@@ -623,7 +623,7 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeBox(); hideQrBox(); } });
 
     // 意見箱：透過 FormSubmit 轉寄到信箱
-    const FEEDBACK_ENDPOINT = 'https://formsubmit.co/ajax/P15E41013@ntu.edu.tw';
+    const FEEDBACK_ENDPOINT = 'https://formsubmit.co/ajax/yicheng.zeng@staton.com.tw';
     const fbForm = document.querySelector('[data-feedback]');
     const fbMsg = document.querySelector('[data-feedback-msg]');
     const fbShow = (ok, text) => {
@@ -642,7 +642,7 @@
       data._subject = '🔹11/8 (日) 12:00～13:00 第十屆學生會會長選舉投票【台北206教室】｜意見箱：' + (data['類別'] || '其他');
       data._template = 'table';
       data._captcha = 'false';
-      data._cc = 'yicheng.zeng@staton.com.tw';
+      data._cc = 'P15E41013@ntu.edu.tw';
       try {
         const res = await fetch(FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
         const out = await res.json().catch(() => ({}));
