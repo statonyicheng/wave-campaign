@@ -51,6 +51,8 @@
     body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
     img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; pointer-events: none; }
     input, textarea { -webkit-user-select: text; user-select: text; }
+    [data-fb-panel] { transition: opacity .25s ease, transform .25s ease, visibility .25s; transform-origin: bottom right; }
+    [data-fb-panel].fb-closed { opacity: 0; transform: translateY(12px) scale(.97); visibility: hidden; pointer-events: none; }
     img[data-allow-save] { pointer-events: auto; -webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto; }
     @media print { body { display: none !important; } }
     body { -webkit-font-smoothing: antialiased; }
@@ -525,50 +527,50 @@
     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6 3-3h11a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14z"/></svg>
     <span>意見箱</span>
   </button>
-  <div data-fb-backdrop class="fixed inset-0 z-[58] hidden bg-navy-ink/40 backdrop-blur-[2px]"></div>
-  <aside id="feedback" data-fb-panel class="fixed inset-y-0 right-0 z-[59] flex w-full max-w-md translate-x-full flex-col bg-white/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-out" role="dialog" aria-modal="true" aria-labelledby="fb-title" aria-hidden="true">
-    <div class="flex items-start justify-between gap-4 border-b border-slate-200/70 px-6 py-5">
+  <div data-fb-backdrop class="fixed inset-0 z-[58] hidden bg-navy-ink/20"></div>
+  <aside id="feedback" data-fb-panel class="fb-closed fixed inset-x-3 bottom-3 z-[59] flex max-h-[85vh] flex-col overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-slate-200 sm:inset-x-auto sm:bottom-5 sm:right-5 sm:w-[360px] sm:max-h-[min(640px,calc(100vh-2.5rem))]" role="dialog" aria-modal="true" aria-labelledby="fb-title" aria-hidden="true">
+    <div class="flex items-start justify-between gap-3 border-b border-slate-200/70 px-5 py-4">
       <div>
         <p class="font-display text-xs font-bold tracking-[.3em] text-sun">FEEDBACK・意見箱</p>
-        <h2 id="fb-title" class="kw mt-2 text-lg font-black leading-snug text-navy"><span class="whitespace-nowrap">🔹11/8 (日) 12:00～13:00</span><br /><span class="whitespace-nowrap">第十屆學生會會長選舉投票</span><wbr /><span class="whitespace-nowrap">【台北206教室】</span></h2>
-        <p class="mt-2 text-sm text-slate-600">有任何想法、建議或想反映的事，都可以留言給 WAVE。</p>
+        <h2 id="fb-title" class="kw mt-1.5 text-base font-black leading-snug text-navy"><span class="whitespace-nowrap">🔹11/8 (日) 12:00～13:00</span><br /><span class="whitespace-nowrap">第十屆學生會會長選舉投票</span><wbr /><span class="whitespace-nowrap">【台北206教室】</span></h2>
+        <p class="mt-1.5 text-xs text-slate-600">有任何想法、建議或想反映的事，都可以留言給 WAVE。</p>
       </div>
-      <button type="button" data-fb-close class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-100 text-xl text-navy transition hover:bg-slate-200" aria-label="關閉">✕</button>
+      <button type="button" data-fb-close class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-slate-100 text-base text-navy transition hover:bg-slate-200" aria-label="關閉">✕</button>
     </div>
     <div class="flex-1 overflow-y-auto overscroll-contain">
-  <form data-feedback class="space-y-5 px-6 pb-8 pt-2" novalidate>
-    <div class="grid gap-5">
+  <form data-feedback class="space-y-3.5 px-5 pb-5 pt-4" novalidate>
+    <div class="grid grid-cols-2 gap-3">
       <label class="block">
-        <span class="text-sm font-bold text-navy">稱呼 <span class="text-sun">*</span></span>
-        <input name="稱呼" type="text" required maxlength="40" autocomplete="name" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="怎麼稱呼你" />
+        <span class="text-xs font-bold text-navy">稱呼 <span class="text-sun">*</span></span>
+        <input name="稱呼" type="text" required maxlength="40" autocomplete="name" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-base outline-none sm:text-sm transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="怎麼稱呼你" />
       </label>
       <label class="block">
-        <span class="text-sm font-bold text-navy">班級 <span class="text-sun">*</span></span>
-        <input name="班級" type="text" required maxlength="40" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="例如 115BA" />
+        <span class="text-xs font-bold text-navy">班級 <span class="text-sun">*</span></span>
+        <input name="班級" type="text" required maxlength="40" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-base outline-none sm:text-sm transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="例如 115BA" />
       </label>
     </div>
     <label class="block">
-      <span class="text-sm font-bold text-navy">聯絡方式 <span class="font-normal text-slate-400">（選填，想收到回覆再留）</span></span>
-      <input name="聯絡方式" type="text" maxlength="80" class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="Email 或 LINE ID" />
+      <span class="text-xs font-bold text-navy">聯絡方式 <span class="font-normal text-slate-400">（選填）</span></span>
+      <input name="聯絡方式" type="text" maxlength="80" class="mt-1 w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-base outline-none sm:text-sm transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="Email 或 LINE ID" />
     </label>
     <fieldset>
-      <legend class="text-sm font-bold text-navy">意見類別</legend>
-      <div class="mt-2 flex flex-wrap gap-2">
-        <label class="cursor-pointer"><input type="radio" name="類別" value="政見建議" class="peer sr-only" checked /><span class="block rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">政見建議</span></label>
-        <label class="cursor-pointer"><input type="radio" name="類別" value="活動想法" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">活動想法</span></label>
-        <label class="cursor-pointer"><input type="radio" name="類別" value="大樓空間" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">大樓空間</span></label>
-        <label class="cursor-pointer"><input type="radio" name="類別" value="畢業旅行" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">畢業旅行</span></label>
-        <label class="cursor-pointer"><input type="radio" name="類別" value="其他" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">其他</span></label>
+      <legend class="text-xs font-bold text-navy">意見類別</legend>
+      <div class="mt-1 flex flex-wrap gap-1.5">
+        <label class="cursor-pointer"><input type="radio" name="類別" value="政見建議" class="peer sr-only" checked /><span class="block rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">政見建議</span></label>
+        <label class="cursor-pointer"><input type="radio" name="類別" value="活動想法" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">活動想法</span></label>
+        <label class="cursor-pointer"><input type="radio" name="類別" value="大樓空間" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">大樓空間</span></label>
+        <label class="cursor-pointer"><input type="radio" name="類別" value="畢業旅行" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">畢業旅行</span></label>
+        <label class="cursor-pointer"><input type="radio" name="類別" value="其他" class="peer sr-only" /><span class="block rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs transition peer-checked:border-sun peer-checked:bg-sun peer-checked:text-white">其他</span></label>
       </div>
     </fieldset>
     <label class="block">
-      <span class="text-sm font-bold text-navy">意見內容 <span class="text-sun">*</span></span>
-      <textarea name="意見內容" required minlength="2" maxlength="2000" rows="5" class="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-base outline-none transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="想跟 WAVE 說的話…"></textarea>
+      <span class="text-xs font-bold text-navy">意見內容 <span class="text-sun">*</span></span>
+      <textarea name="意見內容" required minlength="2" maxlength="2000" rows="4" class="mt-1 w-full resize-y rounded-xl border border-slate-200 bg-white/80 px-3 py-2 text-base outline-none sm:text-sm transition focus:border-sun focus:ring-2 focus:ring-sun/30" placeholder="想跟 WAVE 說的話…"></textarea>
     </label>
     <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
-    <div class="flex flex-col items-stretch gap-3 pt-2">
+    <div class="flex flex-col items-stretch gap-2 pt-1">
       
-      <button type="submit" class="btn-glow w-full rounded-full bg-sun px-10 py-4 text-lg font-bold text-white disabled:opacity-60">送出意見</button>
+      <button type="submit" class="btn-glow w-full rounded-full bg-sun px-6 py-3 text-base font-bold text-white disabled:opacity-60">送出意見</button>
     </div>
     <p class="text-center text-xs text-slate-500">留言只有競選團隊看得到，不會公開。</p>
     <p class="hidden rounded-2xl px-4 py-3 text-center text-sm font-bold" data-feedback-msg role="status"></p>
@@ -674,13 +676,13 @@
     const fbBackdrop = document.querySelector('[data-fb-backdrop]');
     const fbOpenBtn = document.querySelector('[data-fb-open]');
     const openFb = () => {
-      fbPanel.classList.remove('translate-x-full'); fbPanel.setAttribute('aria-hidden', 'false');
+      fbPanel.classList.remove('fb-closed'); fbPanel.setAttribute('aria-hidden', 'false');
       fbBackdrop.classList.remove('hidden'); fbOpenBtn.classList.add('hidden'); fbOpenBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       setTimeout(() => fbForm.elements['稱呼'].focus({ preventScroll: true }), 320);
     };
     const closeFb = () => {
-      fbPanel.classList.add('translate-x-full'); fbPanel.setAttribute('aria-hidden', 'true');
+      fbPanel.classList.add('fb-closed'); fbPanel.setAttribute('aria-hidden', 'true');
       fbBackdrop.classList.add('hidden'); fbOpenBtn.classList.remove('hidden'); fbOpenBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     };
