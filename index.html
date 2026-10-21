@@ -578,6 +578,18 @@
     </div>
   </aside>
 
+  <!-- 意見送出成功 -->
+  <div data-thanks class="fixed inset-0 z-[70] hidden items-center justify-center bg-navy-ink/40 p-6" role="alertdialog" aria-modal="true" aria-labelledby="thanks-title">
+    <div class="w-full max-w-xs rounded-3xl bg-white p-7 text-center shadow-2xl">
+      <span class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-emerald-600">
+        <svg class="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </span>
+      <h3 id="thanks-title" class="mt-4 text-xl font-black text-navy">收到了！</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">謝謝你的意見，WAVE 會認真看每一則留言。</p>
+      <button type="button" data-thanks-close class="btn-glow mt-6 w-full rounded-full bg-sun py-3 text-base font-bold text-white">好的</button>
+    </div>
+  </div>
+
   <!-- QR 分享圖存相簿 -->
   <div data-qr-box class="fixed inset-0 z-[60] hidden flex-col items-center justify-center gap-4 overflow-auto bg-navy-ink/95 p-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="QR 分享圖">
     <button type="button" data-qr-close class="fixed right-4 top-4 z-10 grid h-12 w-12 place-items-center rounded-full bg-white text-2xl font-bold text-navy shadow-lg" aria-label="關閉">✕</button>
@@ -642,6 +654,7 @@
       fbMsg.textContent = text;
       fbMsg.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-700', 'bg-rose-50', 'text-rose-700');
       fbMsg.classList.add(ok ? 'bg-emerald-50' : 'bg-rose-50', ok ? 'text-emerald-700' : 'text-rose-700');
+      fbMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     };
     fbForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -663,7 +676,11 @@
         const out = await res.json().catch(() => ({}));
         if (!res.ok || String(out.success) === 'false') throw new Error(out.message || res.status);
         fbForm.reset();
-        fbShow(true, '收到了，謝謝你的意見！WAVE 會認真看每一則留言。');
+        fbMsg.classList.add('hidden');
+        closeFb();
+        const thanks = document.querySelector('[data-thanks]');
+        thanks.classList.remove('hidden'); thanks.classList.add('flex');
+        thanks.querySelector('[data-thanks-close]').focus();
       } catch (_) {
         fbShow(false, '送出失敗，請稍後再試一次。');
       } finally {
@@ -692,6 +709,11 @@
     document.querySelectorAll('a[href="#feedback"]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openFb(); }));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFb(); });
     if (location.hash === '#feedback') openFb();
+    const thanksBox = document.querySelector('[data-thanks]');
+    const closeThanks = () => { thanksBox.classList.add('hidden'); thanksBox.classList.remove('flex'); };
+    thanksBox.querySelector('[data-thanks-close]').addEventListener('click', closeThanks);
+    thanksBox.addEventListener('click', (e) => { if (e.target === thanksBox) closeThanks(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeThanks(); });
 
     // 捲動淡入
     const io = new IntersectionObserver((entries) => {
