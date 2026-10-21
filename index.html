@@ -43,6 +43,10 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
+    /* 防複製 */
+    body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; pointer-events: none; }
+    @media print { body { display: none !important; } }
     body { -webkit-font-smoothing: antialiased; }
 
     /* 捲動淡入 */
@@ -450,6 +454,15 @@
   </footer>
 
   <script>
+    // 防複製：右鍵、選取、複製、拖曳、常用快捷鍵
+    ['contextmenu', 'copy', 'cut', 'selectstart', 'dragstart'].forEach((ev) =>
+      document.addEventListener(ev, (e) => e.preventDefault()));
+    document.addEventListener('keydown', (e) => {
+      const k = e.key.toLowerCase();
+      if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 's', 'u', 'p'].includes(k)) e.preventDefault();
+      if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(k))) e.preventDefault();
+    });
+
     // 捲動淡入
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
