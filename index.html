@@ -642,6 +642,7 @@
       data._subject = '🔹11/8 (日) 12:00～13:00 第十屆學生會會長選舉投票【台北206教室】｜意見箱：' + (data['類別'] || '其他');
       data._template = 'table';
       data._captcha = 'false';
+      data._cc = 'yicheng.zeng@staton.com.tw';
       try {
         const res = await fetch(FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
         const out = await res.json().catch(() => ({}));
